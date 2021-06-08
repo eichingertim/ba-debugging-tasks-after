@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         setupUI();
         setupListView();
-        setupListeners();
-
 
     }
 
@@ -62,22 +60,13 @@ public class MainActivity extends AppCompatActivity {
         btnAddTask = findViewById(R.id.btn_add);
     }
 
-    private void setupListView() {
-        adapter = new ShoppingItemAdapter();
-        lvTasks.setAdapter(adapter);
-    }
-
-    private void setupListeners() {
-        lvTasks.setOnItemLongClickListener((parent, view, position, id) ->
-                onTaskLongClicked(position));
-
+    private void setupButtonListeners() {
         btnAddNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity.this.onNumChanged(1);
             }
         });
-
         btnRemoveNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +80,21 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.onAddTaskClick();
             }
         });
+    }
+
+    private void setupListView() {
+        adapter = new ShoppingItemAdapter();
+        lvTasks.setAdapter(adapter);
+    }
+
+    private void setupListViewListener() {
+        lvTasks.setOnItemLongClickListener((parent, view, position, id) ->
+                onTaskLongClicked(position));
+    }
+
+    private void setupListeners() {
+        setupListViewListener();
+        setupButtonListeners();
     }
 
     private void onNumChanged(int i) {
