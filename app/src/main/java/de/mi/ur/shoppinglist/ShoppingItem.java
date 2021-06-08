@@ -1,18 +1,18 @@
 package de.mi.ur.shoppinglist;
 
-public class ShoppingList {
+public class ShoppingItem {
 
     private String description;
     private int num;
 
     private boolean completed;
 
-    public ShoppingList() {
+    public ShoppingItem() {
         num = 1;
     }
 
-    public ShoppingList(ShoppingList shoppingList) {
-        setNum(shoppingList.num);
+    public ShoppingItem(ShoppingItem shoppingItem) {
+        setNum(shoppingItem.num);
     }
 
     public String getDescription() {

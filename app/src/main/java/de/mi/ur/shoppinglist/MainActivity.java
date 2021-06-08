@@ -2,8 +2,6 @@ package de.mi.ur.shoppinglist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -15,8 +13,6 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Locale;
 
 /**
@@ -37,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnRemoveNum;
     private Button btnAddTask;
 
-    private ShoppingList currentEditedShoppingList = null;
+    private ShoppingItem currentEditedShoppingItem = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,18 +90,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onNumChanged(int i) {
-        if (currentEditedShoppingList == null) {
-            currentEditedShoppingList = new ShoppingList();
+        if (currentEditedShoppingItem == null) {
+            currentEditedShoppingItem = new ShoppingItem();
         }
 
-        if (currentEditedShoppingList.getNum() + i <= 0) return;
-        currentEditedShoppingList.setNum(currentEditedShoppingList.getNum() + i);
+        if (currentEditedShoppingItem.getNum() + i <= 0) return;
+        currentEditedShoppingItem.setNum(currentEditedShoppingItem.getNum() + i);
         tvNum.setText(String.format(Locale.GERMAN, getString(R.string.num_place_holder),
-                currentEditedShoppingList.getNum()));
+                currentEditedShoppingItem.getNum()));
     }
 
     private void resetInput() {
-        currentEditedShoppingList = null;
+        currentEditedShoppingItem = null;
         tvNum.setText(R.string.one_item);
         etTaskInput.setText("");
     }
@@ -114,9 +110,9 @@ public class MainActivity extends AppCompatActivity {
         Editable taskInputText = etTaskInput.getText();
 
         if (taskInputText != null && !taskInputText.toString().trim().isEmpty()) {
-            currentEditedShoppingList = currentEditedShoppingList == null ? new ShoppingList() : currentEditedShoppingList;
-            currentEditedShoppingList.setDescription(taskInputText.toString());
-            adapter.addTask(new ShoppingList(currentEditedShoppingList));
+            currentEditedShoppingItem = currentEditedShoppingItem == null ? new ShoppingItem() : currentEditedShoppingItem;
+            currentEditedShoppingItem.setDescription(taskInputText.toString());
+            adapter.addTask(new ShoppingItem(currentEditedShoppingItem));
             adapter.notifyDataSetChanged();
             resetInput();
         } else {
@@ -125,11 +121,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean onTaskLongClicked(int position) {
-        ShoppingList longClickedShoppingList = adapter.getItem(position);
+        ShoppingItem longClickedShoppingItem = adapter.getItem(position);
 
-        if (longClickedShoppingList.isCompleted()) return false;
+        if (longClickedShoppingItem.isCompleted()) return false;
 
-        longClickedShoppingList.setCompleted(true);
+        longClickedShoppingItem.setCompleted(true);
         adapter.notifyDataSetChanged();
 
         return true;

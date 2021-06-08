@@ -14,20 +14,20 @@ import java.util.List;
 
 public class ShoppingItemAdapter extends BaseAdapter {
 
-    private final List<ShoppingList> shoppingListItems = new ArrayList<>();
+    private final List<ShoppingItem> shoppingItemItems = new ArrayList<>();
 
-    public void addTask(@NonNull ShoppingList shoppingList) {
-        shoppingListItems.add(shoppingList);
+    public void addTask(@NonNull ShoppingItem shoppingItem) {
+        shoppingItemItems.add(shoppingItem);
     }
 
     @Override
     public int getCount() {
-        return shoppingListItems.size();
+        return shoppingItemItems.size();
     }
 
     @Override
-    public ShoppingList getItem(int position) {
-        return shoppingListItems.get(position);
+    public ShoppingItem getItem(int position) {
+        return shoppingItemItems.get(position);
     }
 
     @Override
@@ -44,22 +44,22 @@ public class ShoppingItemAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.layout_shopping_item, parent, false);
         }
 
-        ShoppingList shoppingListItem = getItem(position);
+        ShoppingItem shoppingItemItem = getItem(position);
 
-        fillData(shoppingListItem, view);
+        fillData(shoppingItemItem, view);
 
         return view;
     }
 
-    private void fillData(ShoppingList shoppingListItem, View view) {
+    private void fillData(ShoppingItem shoppingItemItem, View view) {
         TextView tvDescription = view.findViewById(R.id.tv_description);
         TextView tvNum = view.findViewById(R.id.tv_num);
 
-        tvDescription.setText(shoppingListItem.getDescription());
+        tvDescription.setText(shoppingItemItem.getDescription());
         tvNum.setText(String.format(view.getContext().getString(R.string.num_place_holder),
-                shoppingListItem.getNum()));
+                shoppingItemItem.getNum()));
 
-        if (shoppingListItem.isCompleted()) {
+        if (shoppingItemItem.isCompleted()) {
             tvDescription.setPaintFlags(tvDescription.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             view.setEnabled(false);
         } else view.setEnabled(true);
