@@ -12,8 +12,7 @@ public class ShoppingList {
     }
 
     public ShoppingList(ShoppingList shoppingList) {
-        setDescription(shoppingList.getDescription());
-        setNum(shoppingList.getNum());
+        setNum(shoppingList.num);
     }
 
     public String getDescription() {
