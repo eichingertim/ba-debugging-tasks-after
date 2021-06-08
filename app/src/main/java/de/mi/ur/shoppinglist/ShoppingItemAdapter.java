@@ -56,8 +56,7 @@ public class ShoppingItemAdapter extends BaseAdapter {
         TextView tvNum = view.findViewById(R.id.tv_num);
 
         tvDescription.setText(shoppingItemItem.getDescription());
-        tvNum.setText(String.format(view.getContext().getString(R.string.num_place_holder),
-                shoppingItemItem.getNum()));
+        tvNum.setText(R.string.num_place_holder + shoppingItemItem.getNum());
 
         if (shoppingItemItem.isCompleted()) {
             tvDescription.setPaintFlags(tvDescription.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
