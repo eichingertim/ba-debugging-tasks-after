@@ -1,4 +1,4 @@
-package de.mi.ur.todolist;
+package de.mi.ur.shoppinglist;
 
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">ToDoList</string>
+    <string name="app_name">ShoppingList</string>
     <string name="add">Hinzufügen</string>
-    <string name="task">Aufgabe</string>
-    <string name="deadline_preview_empty">keine Deadline ausgewählt</string>
-    <string name="empty_input_warning">Gib zuerst eine Aufgabe ein</string>
+    <string name="shopping_item">Produkt</string>
+    <string name="empty_input_warning">Gib zuerst ein Produkt ein</string>
+    <string name="num_place_holder">%d Stück</string>
 </resources>

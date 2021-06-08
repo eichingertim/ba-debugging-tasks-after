@@ -1,21 +1,19 @@
-package de.mi.ur.todolist;
+package de.mi.ur.shoppinglist;
 
-import java.util.Date;
-
-public class Task {
+public class ShoppingList {
 
     private String description;
-    private Date deadLine;
+    private int num;
 
     private boolean completed;
 
-    public Task() {
-
+    public ShoppingList() {
+        num = 1;
     }
 
-    public Task(Task task) {
-        setDescription(task.getDescription());
-        setDeadLine(task.getDeadLine());
+    public ShoppingList(ShoppingList shoppingList) {
+        setDescription(shoppingList.getDescription());
+        setNum(shoppingList.getNum());
     }
 
     public String getDescription() {
@@ -26,12 +24,12 @@ public class Task {
         this.description = description;
     }
 
-    public Date getDeadLine() {
-        return deadLine;
+    public int getNum() {
+        return num;
     }
 
-    public void setDeadLine(Date deadLine) {
-        this.deadLine = deadLine;
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public boolean isCompleted() {
