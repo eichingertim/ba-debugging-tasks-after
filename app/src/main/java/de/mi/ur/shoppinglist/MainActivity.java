@@ -19,6 +19,13 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+/**
+ * Projekt Features:
+ *  - Über ein Eingabefeld können Produkte beschrieben werden
+ *  - Per Button kann ein solches Produkt zu einer Liste hinzugefügt werden
+ *  - Optional kann auch die Stückzahl per 'Plus' und 'Minus' festgelegt werden
+ *  - Durch Langes klicken, kann ein Produkt abgehakt/durchgestrichen werden.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ShoppingItemAdapter adapter;
@@ -64,15 +71,26 @@ public class MainActivity extends AppCompatActivity {
         lvTasks.setOnItemLongClickListener((parent, view, position, id) ->
                 onTaskLongClicked(position));
 
-        btnAddNum.setOnClickListener(v -> {
-            onNumChanged(1);
+        btnAddNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.onNumChanged(1);
+            }
         });
 
-        btnRemoveNum.setOnClickListener(v -> {
-            onNumChanged(-1);
+        btnRemoveNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.onNumChanged(-1);
+            }
         });
 
-        btnAddTask.setOnClickListener(v -> onAddTaskClick());
+        btnAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.onAddTaskClick();
+            }
+        });
     }
 
     private void onNumChanged(int i) {
@@ -88,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void resetInput() {
         currentEditedShoppingList = null;
-        tvNum.setText("1");
+        tvNum.setText(R.string.one_item);
         etTaskInput.setText("");
     }
 

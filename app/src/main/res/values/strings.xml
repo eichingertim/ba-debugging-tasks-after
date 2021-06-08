@@ -4,4 +4,5 @@
     <string name="shopping_item">Produkt</string>
     <string name="empty_input_warning">Gib zuerst ein Produkt ein</string>
     <string name="num_place_holder">%d Stück</string>
+    <string name="one_item">1 Stück</string>
 </resources>
