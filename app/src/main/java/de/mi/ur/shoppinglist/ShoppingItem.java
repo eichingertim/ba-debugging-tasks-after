@@ -12,7 +12,11 @@ public class ShoppingItem {
     }
 
     public ShoppingItem(ShoppingItem shoppingItem) {
-        setDescription(shoppingItem.getDescription());
+        if (shoppingItem.getDescription() == null) {
+            setDescription(null);
+        } else {
+            setDescription(shoppingItem.getDescription());
+        }
         setNum(shoppingItem.getNum());
     }
 
