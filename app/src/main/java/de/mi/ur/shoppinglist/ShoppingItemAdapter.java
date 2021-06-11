@@ -38,26 +38,20 @@ public class ShoppingItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             view = inflater.inflate(R.layout.layout_shopping_item, parent, false);
         }
-
         ShoppingItem shoppingItemItem = getItem(position);
-
         fillData(shoppingItemItem, view);
-
         return view;
     }
 
     private void fillData(ShoppingItem shoppingItemItem, View view) {
         TextView tvDescription = view.findViewById(R.id.tv_description);
         TextView tvNum = view.findViewById(R.id.tv_num);
-
         tvDescription.setText(shoppingItemItem.getDescription());
         tvNum.setText(R.string.num_place_holder + shoppingItemItem.getNum());
-
         if (shoppingItemItem.isCompleted()) {
             tvDescription.setPaintFlags(tvDescription.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             view.setEnabled(false);
