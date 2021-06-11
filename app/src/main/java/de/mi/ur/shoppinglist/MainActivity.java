@@ -22,7 +22,7 @@ import java.util.Locale;
  *  - Optional kann auch die Stückzahl per 'Plus' und 'Minus' festgelegt werden
  *  - Durch Langes klicken, kann ein Produkt abgehakt/durchgestrichen werden.
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnViewsReadyListener {
 
     private ShoppingItemAdapter adapter;
 
@@ -38,17 +38,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setupUI();
         setupListView();
+    }
 
+    @Override
+    public void onViewsReady(View v) {
+        setupListeners();
     }
 
     public void setupUI() {
         setContentView(R.layout.activity_main);
-
         lvTasks = findViewById(R.id.lv_shopping_list);
-
         btnAddNum = findViewById(R.id.btn_add_num);
         btnRemoveNum = findViewById(R.id.btn_remove_num);
         tvNum = findViewById(R.id.tv_num);
@@ -88,20 +89,20 @@ public class MainActivity extends AppCompatActivity {
                 onTaskLongClicked(position));
     }
 
-    private void setupListeners() {
-        setupListViewListener();
-        setupButtonListeners();
-    }
 
     private void onNumChanged(int i) {
         if (currentEditedShoppingItem == null) {
             currentEditedShoppingItem = new ShoppingItem();
         }
-
         if (currentEditedShoppingItem.getNum() + i <= 0) return;
         currentEditedShoppingItem.setNum(currentEditedShoppingItem.getNum() + i);
         tvNum.setText(String.format(Locale.GERMAN, getString(R.string.num_place_holder),
                 currentEditedShoppingItem.getNum()));
+    }
+
+    private void setupListeners() {
+        setupListViewListener();
+        setupButtonListeners();
     }
 
     private void resetInput() {
@@ -112,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void onAddTaskClick() {
         Editable taskInputText = etTaskInput.getText();
-
         if (taskInputText != null && !taskInputText.toString().trim().isEmpty()) {
             currentEditedShoppingItem = currentEditedShoppingItem == null ? new ShoppingItem() : currentEditedShoppingItem;
             currentEditedShoppingItem.setDescription(taskInputText.toString());
@@ -126,14 +126,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean onTaskLongClicked(int position) {
         ShoppingItem longClickedShoppingItem = adapter.getItem(position);
-
         if (longClickedShoppingItem.isCompleted()) return false;
-
         longClickedShoppingItem.setCompleted(true);
         adapter.notifyDataSetChanged();
-
         return true;
     }
-
 
 }
